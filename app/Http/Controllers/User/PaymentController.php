@@ -11,6 +11,10 @@ use App\Payment;
 class PaymentController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getCurrentPayment(){
         $user = Auth::user(); //要するにUser情報を取得したい
         $defaultCard = Payment::getDefaultcard($user);
