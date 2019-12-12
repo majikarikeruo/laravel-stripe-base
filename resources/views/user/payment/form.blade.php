@@ -38,6 +38,7 @@
                            <button type="submit" id="create_token" class="btn btn-primary">カードを登録する</button>
                         </div>
                     </form>
+                    <a href="{{route('user.payment')}}">クレジットカード情報ページに戻る</a>
                 </div>
             </div>
         </div>

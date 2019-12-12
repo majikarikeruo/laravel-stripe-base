@@ -17,7 +17,7 @@
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <a href="">ユーザー情報</a>
+                                <a href="{{route('user.info')}}">ユーザー情報</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('user.payment')}}">お支払い情報について</a>

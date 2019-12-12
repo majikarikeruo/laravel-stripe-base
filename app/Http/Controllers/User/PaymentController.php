@@ -20,6 +20,10 @@ class PaymentController extends Controller
     }
 
     public function getPaymentForm(){
+
+
+
+
         $user = Auth::user(); //要するにUser情報を取得したい
         return view('user.payment.form');
 
@@ -79,6 +83,7 @@ class PaymentController extends Controller
         } else {
             return redirect('/user/payment/form')->with('errors', '申し訳ありません、通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。');
         }
+
 
         return redirect('/user/payment')->with("success", "カード情報の登録が完了しました。");
     }

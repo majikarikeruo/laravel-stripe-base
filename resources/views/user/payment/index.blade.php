@@ -43,14 +43,20 @@
                         <div class="form-group">
                             <a href="{{route('user.payment.form')}}" class="btn btn-primary">使用するクレジットカード情報を変更</a>
                         </div>
-                        <form action="{{route('user.payment.destroy')}}" method="POST">
-                            @csrf
-                            <button class="btn btn-danger">登録しているクレジットカード情報を削除</button>
-                        </form>
+
+                        <div class="form-group">
+                            <form action="{{route('user.payment.destroy')}}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger">登録しているクレジットカード情報を削除</button>
+                            </form>
+                        </div>
                     @else
-                        <a href="{{route('user.payment.form')}}" class="btn btn-primary">クレジットカード情報を新規登録</a>
+                        <div class="form-group">
+                            <a href="{{route('user.payment.form')}}" class="btn btn-primary">クレジットカード情報を新規登録</a>
+                        </div>
                     @endif
 
+                    <p><a href="{{route('home')}}">メニューページに戻る</a></p>
                 </div>
             </div>
         </div>
