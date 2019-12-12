@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Auth;
 
 class Payment extends Model
 {
@@ -38,8 +40,9 @@ class Payment extends Model
             return false;
         }
 
+        $targetCustomer = null;
         if (isset($customer->id)) {
-　　　　　　　$targetCustomer = User::find(Auth::id());//要するに当該顧客のデータをUserテーブルから引っ張りたい
+            $targetCustomer = User::find(Auth::id());//要するに当該顧客のデータをUserテーブルから引っ張りたい
             $targetCustomer->stripe_id = $customer->id;
             $targetCustomer->update();
             return true;
@@ -96,6 +99,7 @@ class Payment extends Model
     protected static function getDefaultcard($user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret_key'));
+
         $default_card = null;
 
         if (!is_null($user->stripe_id)) {
@@ -129,8 +133,10 @@ class Payment extends Model
         $customer = \Stripe\Customer::retrieve($user->stripe_id);
         $card = $customer->sources->data[0];
 
+        var_dump($card,"カード");
+        /* card情報が存在していれば削除 */
         if ($card) {
-            $customer->deleteSource(
+            \Stripe\Customer::deleteSource(
                 $user->stripe_id,
                 $card->id
             );

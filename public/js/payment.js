@@ -1,5 +1,5 @@
 /* 基本設定*/
-const stripe = Stripe("ここにStripeから発行された公開可能キーを入力");
+const stripe = Stripe(stripe_public_key);
 const elements = stripe.elements();
 
 /* Stripe Elementsを使ったFormの各パーツをどんなデザインにしたいかを定義 */

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">現在の支払い方法</div>
+                <div class="card-header">現在登録しているクレジットカード</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,43 @@
                         </div>
                     @endif
 
-                    <a href="{{route('user.payment.form')}}">クレジットカード情報を登録</a>
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('errors'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('errors') }}
+                        </div>
+                    @endif
+
+                    <div class="form-group">
+                        @isset($defaultCard)
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>カード番号：</span><span>{{$defaultCard["number"]}}</span></li>
+                                <li class="list-group-item"><span>カード有効期限（月/年)：</span><span>{{$defaultCard["exp_month"]}}/{{$defaultCard["exp_year"]}}</span></li>
+                                <li class="list-group-item"><span>カード名義：</span><span>{{$defaultCard["name"]}}</span></li>
+                                <li class="list-group-item"><span>カードブランド：</span><span>{{$defaultCard["brand"]}}</span></li>
+                            </ul>
+                        @else
+                        <p>現在登録されているクレジットカードはありません。</p>
+                        @endif
+                    </div>
+
+                    @isset($defaultCard)
+                        <div class="form-group">
+                            <a href="{{route('user.payment.form')}}" class="btn btn-primary">使用するクレジットカード情報を変更</a>
+                        </div>
+                        <form action="{{route('user.payment.destroy')}}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger">登録しているクレジットカード情報を削除</button>
+                        </form>
+                    @else
+                        <a href="{{route('user.payment.form')}}" class="btn btn-primary">クレジットカード情報を新規登録</a>
+                    @endif
+
                 </div>
             </div>
         </div>

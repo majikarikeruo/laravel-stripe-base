@@ -37,7 +37,7 @@
                         <div class="form-group">
                            <button type="submit" id="create_token" class="btn btn-primary">カードを登録する</button>
                         </div>
-                       </form>
+                    </form>
                 </div>
             </div>
         </div>

@@ -5,27 +5,29 @@ namespace App\Http\Controllers\User;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Payment;
 
 class PaymentController extends Controller
 {
     //
     public function getCurrentPayment(){
+        $user = Auth::user(); //要するにUser情報を取得したい
+        $defaultCard = Payment::getDefaultcard($user);
 
-
-        return view('user.payment.index');
+        return view('user.payment.index', compact('user', 'defaultCard'));
 
     }
 
     public function getPaymentForm(){
-
-
+        $user = Auth::user(); //要するにUser情報を取得したい
         return view('user.payment.form');
 
     }
 
 
     public function storePaymentInfo(Request $request){
-            /**
+        /**
          * フロントエンドから送信されてきたtokenを取得
          * これがないと一切のカード登録が不可
          **/
@@ -67,6 +69,7 @@ class PaymentController extends Controller
                 }
 
                 $result = Payment::updateCustomer($token, $user);
+
                 /* card error */
                 if(!$result){
                     $errors = "カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。";
@@ -81,5 +84,17 @@ class PaymentController extends Controller
         return redirect('/user/payment')->with("success", "カード情報の登録が完了しました。");
     }
 
+
+    public function deletePaymentInfo(){
+        $user = User::find(Auth::id());
+
+        $result = Payment::deleteCard($user);
+
+        if($result){
+            return redirect('/user/payment')->with('success', 'カード情報の削除が完了しました。');
+        }else{
+            return redirect('/user/payment')->with('errors', 'カード情報の削除に失敗しました。恐れ入りますが、通信状況の良い場所で再度お試しいただくか、しばらく経ってから再度お試しください。');
+        }
+    }
 
 }
