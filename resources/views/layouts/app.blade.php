@@ -76,5 +76,8 @@
             @yield('content')
         </main>
     </div>
+    @if(request()->path()==='user/payment/form')
+        @include('parts.payment');
+    @endif
 </body>
 </html>
