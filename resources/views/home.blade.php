@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item">
@@ -36,3 +35,4 @@
     </div>
 </div>
 @endsection
+

@@ -45,3 +45,10 @@
     </div>
 </div>
 @endsection
+
+
+<form action="{{route("user.update", ['id'=>$data["id"]])}}">
+
+
+
+</form>
