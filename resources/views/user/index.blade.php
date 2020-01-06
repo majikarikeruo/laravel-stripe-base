@@ -65,6 +65,7 @@
                         </ul>
                     </div>
 
+                    <p><a href="{{route('user.edit')}}">ユーザー情報編集ページへ</a></p>
                     <p><a href="{{route('home')}}">メニューページに戻る</a></p>
 
                 </div>

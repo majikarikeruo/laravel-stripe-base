@@ -25,9 +25,21 @@ class UserController extends Controller
 
     public function editUserInfo(){
         $user = Auth::user();
+        $user_interest = $user->interests;
+        // var_dump($user_interest[0]["name"]);
         $interests = Interest::all();
-        return view('user.edit', compact(['user', 'interests']));
+        $interest_list = [];
+        foreach($user_interest as $item){
+            array_push($interest_list, $item["id"]);
+        }
+        return view('user.edit', compact(['user', 'interests', 'interest_list']));
 
+    }
+    public function updateUserInfo(Request $request){
+        $user = Auth::user();
+        $user->interests()->detach(); //ユーザの登録済みのスキルを全て削除
+        $user->interests()->attach($request->interests); //改めて登録
+        return redirect('user/info');
     }
 
     public function becomePaidMember(Request $request){

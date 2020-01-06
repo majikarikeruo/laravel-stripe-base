@@ -42,21 +42,23 @@
                                 @endif
                             </li>
                             <li class="list-group-item">
-                                <form action="" method="POST">
+                                <form action="{{route('user.update')}}" method="POST">
+                                    @csrf
                                     <span>興味のある分野：</span>
                                     <div>
                                         @foreach($interests as $item)
+
                                             <label for="">
-                                                <input type="checkbox" value="{{$item["id"]}}" name="interests[]">{{$item["name"]}}
+                                                <input type="checkbox" value="{{$item["id"]}}" name="interests[]" @if(in_array($item["id"], $interest_list)) checked @endif>{{$item["name"]}}
                                             </label>
                                         @endforeach
-
                                     </div>
+                                    <button class="btn btn-primary">更新</button>
                                 </form>
                             </li>
                         </ul>
                     </div>
-
+                    <p><a href="{{route('user.info')}}">ユーザー情報ページへ</a></p>
                     <p><a href="{{route('home')}}">メニューページに戻る</a></p>
 
                 </div>

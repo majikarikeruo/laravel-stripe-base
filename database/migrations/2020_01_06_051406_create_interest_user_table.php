@@ -14,8 +14,23 @@ class CreateInterestUserTable extends Migration
     public function up()
     {
         Schema::create('interest_user', function (Blueprint $table) {
-            $table->unsignedInteger('interest_id');
-            $table->unsignedInteger('user_id');
+
+
+            /*
+
+            多対多のため、interestテーブルとuserテーブルの中間テーブルになるものを作成。
+            中間テーブルの値は、親テーブルの特定の値と一致するものである。
+            そのため、型を揃えるなどの意識が必要。
+
+            unsignedIntegerを使用するのは、大抵親テーブルのidを参照するときは
+            increments('id')となっているのがほとんどだが、incrementsで生成されるのが
+            INT(10) unsigned　などになるから。
+            UNSIGNEDは符号なしという意味。わかりやすい例でいうと-（マイナス）をつける
+            必要がないものはUNSIGNEDにすべき。
+
+            */
+            $table->unsignedBigInteger('interest_id');
+            $table->unsignedBigInteger('user_id');
             $table->primary(['interest_id', 'user_id']);
 
 
