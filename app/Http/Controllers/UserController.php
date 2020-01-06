@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Interest;
 use App\Payment;
 
 class UserController extends Controller
@@ -20,6 +21,13 @@ class UserController extends Controller
         $defaultCard = Payment::getDefaultcard($user);
 
         return view('user.index', compact('user', 'defaultCard'));
+    }
+
+    public function editUserInfo(){
+        $user = Auth::user();
+        $interests = Interest::all();
+        return view('user.edit', compact(['user', 'interests']));
+
     }
 
     public function becomePaidMember(Request $request){
