@@ -6,21 +6,16 @@
         @include('admin.parts.sidebar')
 
         <div class="col-9">
-            <h1>開催レッスン情報</h1>
-            <a href="{{route('admin.lessons.new')}}" class="btn btn-primary">新規イベント登録</a>
+            <h1>開催会場一覧</h1>
             <div>
-                @if(count($lessons)>0)
+                @if(count($places)>0)
 
                     <div>
                         <ul class="list-group">
-                            @foreach($lessons as $item)
+                            @foreach($places as $place)
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <a href="/admin/lessons/{{$item["id"]}}">{{$item["title"]}}</a>
-
-
-                                    <div class="d-flex justify-content-between">
-                                        <a href="/admin/lessons/edit/{{$item["id"]}}">編集</a>
-                                    </div>
+                                    <a href="{{$place["url"]}}" target="blank">{{$place["name"]}}</a>
+                                    <span>{{$place["access"]}}</span>
                                 </li>
                             @endforeach
                         </ul>

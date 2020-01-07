@@ -57,15 +57,31 @@ Route::group(['prefix' => 'admin', 'middleware' => 'guest:admin'], function() {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+
     Route::get('lessons', 'Admin\HomeController@getLessons')->name('admin.lessons');
+    Route::get('lessons/info', 'Admin\HomeController@getLessonCommonInfo')->name('admin.lessons.info');
     Route::get('lessons/new', 'Admin\HomeController@getLessonForm')->name('admin.lessons.new');
     Route::post('lessons/store', 'Admin\HomeController@storeLessonData')->name('admin.lessons.store');
     Route::get('lessons/{id}', 'Admin\HomeController@showLessonInfo')->name('admin.lessons.edit');
     Route::get('lessons/edit/{id}', 'Admin\HomeController@getLessonEditForm')->name('admin.lessons.edit');
     Route::post('lessons/update/{id}', 'Admin\HomeController@updateLessonData')->name('admin.lessons.update');
-    Route::get('schedule', 'Admin\HomeController@getScheduleForm')->name('admin.schedule');
-    Route::post('schedule/store', 'Admin\HomeController@storeLessonSchedule')->name('admin.schedule.store');
 
-    Route::get('apply/list', 'Admin\HomeController@getApplyList')->name('admin.apply.list');
+
+    Route::get('places/list', 'Admin\PlaceController@getPlaceList')->name('admin.places.list');
+    Route::get('places/new', 'Admin\PlaceController@getPlaceForm')->name('admin.places.new');
+
+
+    // schedule
+    Route::get('schedule', 'Admin\ScheduleController@getScheduleForm')->name('admin.schedule');
+    Route::post('schedule/store', 'Admin\ScheduleController@storeLessonSchedule')->name('admin.schedule.store');
+
+
+    //customer
+    Route::get('customer/list', 'Admin\CustomerController@getCustomerList')->name('admin.customer.list');
+    Route::get('customer/{id}', 'Admin\CustomerController@getCustomerInfo')->name('admin.customer.info');
+
+
+    //apply
+    Route::get('apply/list', 'Admin\ApplyController@getApplyList')->name('admin.apply.list');
 
 });

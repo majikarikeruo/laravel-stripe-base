@@ -15,10 +15,7 @@
                         <label for="title">イベント名</label>
                         <input type="text" name="title" id="title" value="" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="description">イベント紹介文</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
+
 
                     <div class="form-group">
                         <label for="capacity">定員</label>
@@ -32,9 +29,18 @@
 
                     <div class="form-group">
                         <label for="place">会場</label>
-                        <input type="text" name="place" id="place" value="" class="form-control">
+
+                        <select name="place" id="place" class="form-control">
+                            @foreach($places as $place)
+                                <option value="{{$place["id"]}}">{{$place["name"]}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="description">イベント内容紹介文</label>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
 
                     <div class="form-group">
                         <label for="notice">注意書き</label>

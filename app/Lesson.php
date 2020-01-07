@@ -15,4 +15,8 @@ class Lesson extends Model
     public function schedules(){
         return $this->hasMany(('App\Schedule'));
     }
+
+    public function place(){
+        return $this->belongsTo(('App\Place'));
+    }
 }

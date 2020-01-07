@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 
 use App\Lesson;
+use App\Place;
 
 class HomeController extends Controller
 {
@@ -22,19 +23,22 @@ class HomeController extends Controller
 
     public function getLessons(){
         $lessons = Lesson::all();
-
         return view('admin.lessons.list', compact('lessons'));
-
     }
 
 
     public function getLessonForm(){
+        $places = Place::all();
 
-        return view('admin.lessons.new');
+        return view('admin.lessons.new', compact('places'));
 
     }
 
+    public function getLessonCommonInfo(){
 
+        return view('admin.lessons.info');
+
+    }
     public function storeLessonData(Request $request){
 
         $lesson = new Lesson();
@@ -48,7 +52,9 @@ class HomeController extends Controller
     public function getLessonEditForm($id){
 
         $lesson  = Lesson::find($id);
-        return view('admin.lessons.edit', compact(['lesson','id']));
+        $places = Place::all();
+
+        return view('admin.lessons.edit', compact(['lesson','id', 'places']));
 
     }
 
@@ -70,25 +76,4 @@ class HomeController extends Controller
     }
 
 
-    public function getScheduleForm(){
-        $lessons = Lesson::all();
-
-        return view('admin.lessons.schedule', compact(['lessons']));
-
-    }
-
-
-
-    public function storeLessonSchedule(Request $request){
-
-        $lesson  = Lesson::find($request->lesson_id);
-
-        //
-        $lesson->schedules()->createMany([
-            $request->all()
-        ]);
-
-
-        return redirect('/admin/lessons/schedule')->with('success', 'イベント日程の登録が完了しました');
-    }
 }

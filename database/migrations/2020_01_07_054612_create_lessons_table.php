@@ -19,7 +19,7 @@ class CreateLessonsTable extends Migration
             $table->string('description')->comment('イベント内容');
             $table->bigInteger('capacity')->comment('定員');
             $table->bigInteger('price')->comment('料金');
-            $table->string('place')->comment('place');
+            $table->bigInteger('place')->comment('会場');
             $table->string('notice')->comment('注意書き');
             $table->timestamps();
         });
