@@ -7,7 +7,7 @@
 
         <div class="col-9">
             <h1>日程登録</h1>
-            <form action="{{route('admin.lessons.schedule.store')}}" method="POST">
+            <form action="{{route('admin.schedule.store')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="">日程を登録したいイベントを選択</label>

@@ -8,7 +8,7 @@
         <div class="col-9">
             <h1>イベント情報更新</h1>
             <div>
-                <form action="{{route('admin.lessons.update', ['id'=>$id])}}" method="POST">
+                <form action="{{route('admin.update', ['id'=>$id])}}" method="POST">
                     @csrf
 
                     <div class="form-group">

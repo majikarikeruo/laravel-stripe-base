@@ -14,9 +14,14 @@
                     <div>
                         <ul class="list-group">
                             @foreach($lessons as $item)
-                                <li class="list-group-item">
-                                    <a href="/admin/lessons/edit/{{$item["id"]}}">{{$item["title"]}}</a>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <a href="/admin/lessons/{{$item["id"]}}">{{$item["title"]}}</a>
 
+
+                                    <div class="d-flex justify-content-between">
+                                        <div><span>0</span>/<span>8</span>人</div>
+                                        <a href="/admin/lessons/edit/{{$item["id"]}}">編集</a>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>

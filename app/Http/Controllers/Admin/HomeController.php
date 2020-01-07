@@ -52,6 +52,12 @@ class HomeController extends Controller
 
     }
 
+    public function showLessonInfo($id){
+
+
+        return view('admin.lessons.detail', compact('id'));
+
+    }
 
 
     public function updateLessonData(Request $request, $id){
@@ -77,7 +83,7 @@ class HomeController extends Controller
 
         $lesson  = Lesson::find($request->lesson_id);
 
-
+        //
         $lesson->schedules()->createMany([
             $request->all()
         ]);
