@@ -62,4 +62,22 @@ class HomeController extends Controller
 
         return redirect('/admin/lessons')->with('success', 'イベントの登録が完了しました');
     }
+
+
+    public function getScheduleForm(){
+
+        return view('admin.lessons.schedule');
+
+    }
+
+
+
+    public function storeLessonSchedule(Request $request){
+
+        $lesson  = Lesson::find($id);
+        $lesson->fill($request->all())->save();
+
+
+        return redirect('/admin/lessons/schedule')->with('success', 'イベント日程の登録が完了しました');
+    }
 }

@@ -62,5 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     Route::post('lessons/store', 'Admin\HomeController@storeLessonData')->name('admin.lessons.store');
     Route::get('lessons/edit/{id}', 'Admin\HomeController@getLessonEditForm')->name('admin.lessons.edit');
     Route::post('lessons/update/{id}', 'Admin\HomeController@updateLessonData')->name('admin.lessons.update');
+    Route::get('lessons/schedule', 'Admin\HomeController@getScheduleForm')->name('admin.lessons.schedule');
+    Route::post('lessons/schedule/store', 'Admin\HomeController@storeLessonSchedule')->name('admin.lessons.schedule.store');
 
 });

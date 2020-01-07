@@ -3,11 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-3">
-            <ul class="list-group">
-                <li class="list-group-item"><a href="{{route('admin.lessons')}}">開催レッスン</a></li>
-            </ul>
-        </div>
+        @include('admin.parts.sidebar')
+
         <div class="col-9">
             <h1>イベント情報更新</h1>
             <div>
