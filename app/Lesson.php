@@ -10,4 +10,9 @@ class Lesson extends Model
     protected $fillable = [
         'title', 'description', 'capacity','price','place','notice'
     ];
+
+
+    public function schedules(){
+        return $this->hasMany(('App\Schedule'));
+    }
 }

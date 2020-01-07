@@ -65,8 +65,9 @@ class HomeController extends Controller
 
 
     public function getScheduleForm(){
+        $lessons = Lesson::all();
 
-        return view('admin.lessons.schedule');
+        return view('admin.lessons.schedule', compact(['lessons']));
 
     }
 
@@ -74,8 +75,12 @@ class HomeController extends Controller
 
     public function storeLessonSchedule(Request $request){
 
-        $lesson  = Lesson::find($id);
-        $lesson->fill($request->all())->save();
+        $lesson  = Lesson::find($request->lesson_id);
+
+
+        $lesson->schedules()->createMany([
+            $request->all()
+        ]);
 
 
         return redirect('/admin/lessons/schedule')->with('success', 'イベント日程の登録が完了しました');
