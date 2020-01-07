@@ -47,7 +47,6 @@
                                     <span>興味のある分野：</span>
                                     <div>
                                         @foreach($interests as $item)
-
                                             <label for="">
                                                 <input type="checkbox" value="{{$item["id"]}}" name="interests[]" @if(in_array($item["id"], $interest_list)) checked @endif>{{$item["name"]}}
                                             </label>

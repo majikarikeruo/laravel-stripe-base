@@ -27,6 +27,8 @@ class UserController extends Controller
         $user = Auth::user();
         $user_interest = $user->interests;
         // var_dump($user_interest[0]["name"]);
+
+        
         $interests = Interest::all();
         $interest_list = [];
         foreach($user_interest as $item){

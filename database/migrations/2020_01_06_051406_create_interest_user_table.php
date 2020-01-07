@@ -28,6 +28,8 @@ class CreateInterestUserTable extends Migration
             UNSIGNEDは符号なしという意味。わかりやすい例でいうと-（マイナス）をつける
             必要がないものはUNSIGNEDにすべき。
 
+            intとbigint（incrementsとbigincrements）の違いは以下参照
+            https://qiita.com/fuubit/items/17f3eb306c64ede163d2
             */
             $table->unsignedBigInteger('interest_id');
             $table->unsignedBigInteger('user_id');
